@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Happy Happy Birthday!</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Montserrat:wght@400;600&display=swap');
+
+    :root {
+      --pink: #FFB6C1;
+      --soft-pink: #FFE4E1;
+      --rose: #FFD1DC;
+      --gold: #FFD700;
+      --white: #FFF9F9;
+      --purple: #D8BFD8;
+      --blue: #ADD8E6;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Montserrat', sans-serif;
+      color: #555;
+      overflow-x: hidden;
+      min-height: 100vh;
+      position: relative;
+      background: linear-gradient(to bottom, #fff0f5, #fff9fb);
+    }
+
+    .container {
+      max-width: 90%;
+      width: 700px;
+      margin: 20px auto;
+      padding: 20px;
+      background-color: rgba(255, 255, 255, 0.9);
+      border-radius: 20px;
+      box-shadow: 0 5px 25px rgba(255, 182, 193, 0.2);
+      position: relative;
+      overflow: hidden;
+      z-index: 10;
+      backdrop-filter: blur(3px);
+    }
+
+    .container::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 8px;
+      background: linear-gradient(90deg, var(--pink), var(--rose), var(--gold));
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 20px;
+      padding-bottom: 15px;
+      border-bottom: 1px dashed var(--pink);
+    }
+
+    .header h1 {
+      font-family: 'Dancing Script', cursive;
+      font-size: clamp(2.5rem, 6vw, 3.5rem);
+      color: var(--pink);
+      margin: 10px 0;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .subtitle {
+      font-family: 'Dancing Script', cursive;
+      font-size: clamp(1.2rem, 3vw, 1.5rem);
+      color: var(--rose);
+      margin-top: 5px;
+    }
+
+    .photo-gallery {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .gallery-item {
+      flex: 1 1 calc(33.333% - 20px);
+      min-width: 150px;
+      max-width: 100%;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(255, 182, 193, 0.2);
+      transition: transform 0.4s ease;
+      border: 3px solid var(--soft-pink);
+      position: relative;
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+    }
+
+    .gallery-item:hover {
+      transform: scale(1.05);
+    }
+
+    .message {
+      background-color: var(--soft-pink);
+      padding: 20px;
+      border-radius: 15px;
+      margin: 20px 0;
+      position: relative;
+      font-size: clamp(0.9rem, 3vw, 1.1rem);
+    }
+
+    .message::before {
+      content: '""';
+      position: absolute;
+      top: 5px;
+      left: 10px;
+      font-size: 3rem;
+      color: rgba(255, 182, 193, 0.3);
+      font-family: serif;
+      line-height: 1;
+    }
+
+    .message p {
+      line-height: 1.6;
+      position: relative;
+      z-index: 1;
+      margin: 0;
+    }
+
+    .blessing {
+      text-align: center;
+      margin: 25px 0;
+      padding: 15px;
+      background-color: white;
+      border-radius: 15px;
+      border: 1px solid var(--soft-pink);
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+    }
+
+    .blessing h2 {
+      font-family: 'Dancing Script', cursive;
+      font-size: clamp(1.5rem, 4vw, 2rem);
+      color: var(--pink);
+      margin-bottom: 10px;
+    }
+
+    .blessing p {
+      font-size: clamp(0.9rem, 3vw, 1rem);
+      line-height: 1.6;
+      margin: 10px 0;
+    }
+
+    .bible-verse {
+      text-align: center;
+      font-style: italic;
+      background: #fff0f5;
+      padding: 15px;
+      border-radius: 15px;
+      margin: 15px 0;
+      font-size: clamp(0.9rem, 3vw, 1rem);
+      color: #444;
+      border-left: 5px solid var(--rose);
+    }
+
+    .footer {
+      text-align: center;
+      margin-top: 30px;
+      padding-top: 15px;
+      border-top: 1px dashed var(--pink);
+      font-size: 0.8rem;
+      color: #999;
+    }
+
+    .hearts {
+      color: var(--pink);
+      font-size: 1rem;
+      letter-spacing: 3px;
+    }
+
+    /* Enhanced Background Elements */
+    .background-elements {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1;
+      overflow: hidden;
+    }
+
+    .balloon {
+      position: absolute;
+      border-radius: 50%;
+      animation: float-up 15s ease-in infinite;
+      opacity: 0.7;
+    }
+
+    .balloon::before {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 2px;
+      height: 40px;
+      background: rgba(0,0,0,0.1);
+    }
+
+    .balloon:nth-child(1) {
+      width: 60px;
+      height: 80px;
+      background: var(--pink);
+      left: 10%;
+      animation-delay: 0s;
+    }
+
+    .balloon:nth-child(2) {
+      width: 80px;
+      height: 100px;
+      background: var(--rose);
+      left: 25%;
+      animation-delay: 2s;
+    }
+
+    .balloon:nth-child(3) {
+      width: 50px;
+      height: 70px;
+      background: var(--gold);
+      left: 40%;
+      animation-delay: 4s;
+    }
+
+    .balloon:nth-child(4) {
+      width: 70px;
+      height: 90px;
+      background: var(--purple);
+      left: 60%;
+      animation-delay: 1s;
+    }
+
+    .balloon:nth-child(5) {
+      width: 60px;
+      height: 80px;
+      background: var(--blue);
+      left: 80%;
+      animation-delay: 3s;
+    }
+
+    .heart {
+      position: absolute;
+      color: var(--pink);
+      font-size: 16px;
+      opacity: 0;
+      animation: float-up 6s ease-in infinite, pulse 1.5s ease-in-out infinite;
+    }
+
+    .confetti {
+      position: absolute;
+      width: 8px;
+      height: 8px;
+      background: var(--pink);
+      opacity: 0;
+      animation: confetti-fall 5s linear infinite;
+    }
+
+    @keyframes float-up {
+      0% {
+        transform: translateY(100vh) scale(0.5);
+        opacity: 0;
+      }
+      20% {
+        opacity: 0.7;
+      }
+      100% {
+        transform: translateY(-20vh) scale(1);
+        opacity: 0;
+      }
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.2); }
+    }
+
+    @keyframes confetti-fall {
+      0% {
+        transform: translateY(-100px) rotate(0deg);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(100vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        padding: 15px;
+        margin: 10px auto;
+      }
+      
+      .gallery-item {
+        flex: 1 1 calc(50% - 10px);
+      }
+      
+      .message {
+        padding: 15px;
+      }
+      
+      .balloon {
+        display: none; /* Hide balloons on very small screens */
+      }
+    }
+
+    @media (max-width: 400px) {
+      .gallery-item {
+        flex: 1 1 100%;
+      }
+      
+      .header h1 {
+        font-size: 2rem;
+      }
+      
+      .subtitle {
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="background-elements" id="background-container">
+    <!-- Balloons will be added here by JavaScript -->
+  </div>
+
+  <div class="container">
+    <div class="header">
+      <h1>Happy Happy Birthday!</h1>
+      <div class="subtitle">Wishing you a beautiful day</div>
+    </div>
+
+    <div class="photo-gallery">
+      <div class="gallery-item">
+        <img src="pic2.jpg" alt="Memory 1">
+      </div>
+      <div class="gallery-item">
+        <img src="pic3.jpg" alt="Memory 2">
+      </div>
+      <div class="gallery-item">
+        <img src="pic1.jpg" alt="Memory 3">
+      </div>
+    </div>
+
+    <div class="message">
+      <p>hmmm... hi, hellow heheh bahalag snuban ko nmo ah heheh my message for u is this day is a special day reminder of how far you've come and how much you've grown. Life may have its ups and downs, but every step you've taken has made you stronger, wiser, and more ready for what's ahead.</p>
+      <p>Remember that you are never alone in your journey. God's love and guidance are with you every step of the way. Even when the road gets tough, keep trusting His plan for you, and keep pushing forward.</p>
+      <p>Stay humble, stay kind, and never forget to pray—because God hears your heart and knows your dreams.</p>
+      <p>Believe this: You are capable of amazing things. No challenge is too big when you have God by your side.</p>
+      <p>May this year bring you peace, joy, and countless blessings. Keep shining and trusting in your purpose. You've got this!</p>
+      <p>"amping ka always maldita ha take care yourself always and pray always ni lord laban always for you dreams happy birthday and GODBLESSED YOU"!</p>
+    </div>
+
+    <div class="blessing">
+      <h2>MY VERSE FOR YOU MALDITA</h2>
+      <p>"The Lord bless you and keep you;</p>
+      <p>The Lord make His face shine upon you and be gracious to you;</p>
+      <p>The Lord lift up His countenance upon you and give you peace."</p>
+      <p>— Numbers 6:24-26</p>
+    </div>
+
+    <div class="bible-verse">
+      "She is clothed with strength and dignity, and she laughs without fear of the future." – <strong>Proverbs 31:25</strong>
+    </div>
+
+    <div class="footer">
+      <div class="hearts">♥ ♥ ♥</div>
+      <p>Made with love for someone very special</p>
+    </div>
+  </div>
+
+  <script>
+    // Create background elements
+    const bgContainer = document.getElementById('background-container');
+    
+    // Add 5 balloons (only if screen is wide enough)
+    if (window.innerWidth > 600) {
+      for (let i = 1; i <= 5; i++) {
+        const balloon = document.createElement('div');
+        balloon.className = 'balloon';
+        bgContainer.appendChild(balloon);
+      }
+    }
+    
+    // Create floating hearts
+    function createHearts() {
+      const heart = document.createElement('div');
+      heart.className = 'heart';
+      heart.innerHTML = '♥';
+      heart.style.left = Math.random() * 100 + 'vw';
+      heart.style.animationDuration = Math.random() * 3 + 4 + 's';
+      heart.style.fontSize = (Math.random() * 10 + 8) + 'px';
+      heart.style.animationDelay = Math.random() * 2 + 's';
+      bgContainer.appendChild(heart);
+      
+      setTimeout(() => {
+        heart.remove();
+      }, 6000);
+    }
+
+    // Create confetti
+    function createConfetti() {
+      const colors = ['var(--pink)', 'var(--rose)', 'var(--gold)', 'var(--purple)', 'var(--blue)'];
+      const confetti = document.createElement('div');
+      confetti.className = 'confetti';
+      confetti.style.left = Math.random() * 100 + 'vw';
+      confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+      confetti.style.animationDuration = Math.random() * 3 + 2 + 's';
+      confetti.style.width = (Math.random() * 6 + 4) + 'px';
+      confetti.style.height = (Math.random() * 6 + 4) + 'px';
+      bgContainer.appendChild(confetti);
+      
+      setTimeout(() => {
+        confetti.remove();
+      }, 5000);
+    }
+
+    setInterval(createHearts, 300);
+    setInterval(createConfetti, 150);
+    
+    // Create initial elements
+    for (let i = 0; i < 10; i++) {
+      setTimeout(createHearts, i * 200);
+      setTimeout(createConfetti, i * 100);
+    }
+
+    // Adjust layout on resize
+    window.addEventListener('resize', function() {
+      const balloons = document.querySelectorAll('.balloon');
+      if (window.innerWidth <= 600 && balloons.length > 0) {
+        balloons.forEach(balloon => balloon.remove());
+      } else if (window.innerWidth > 600 && balloons.length === 0) {
+        for (let i = 1; i <= 5; i++) {
+          const balloon = document.createElement('div');
+          balloon.className = 'balloon';
+          bgContainer.appendChild(balloon);
+        }
+      }
+    });
+  </script>
+</body>
+</html>
